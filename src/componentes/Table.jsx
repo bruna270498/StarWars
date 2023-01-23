@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { ContextApi } from '../context/contexApi';
 
 function Tabela() {
-  const { planetas } = useContext(ContextApi);
+  const { planetas, pesquisaInput } = useContext(ContextApi);
 
-  const tabelaPlanetas = () => planetas.map((planet) => (
+  const planetaFilter = planetas.filter((name) => name.name.includes(pesquisaInput));
+
+  const tabelaPlanetas = () => planetaFilter.map((planet) => (
     <tr key={ planet.name }>
       <td>{planet.name}</td>
       <td>{planet.rotation_period}</td>

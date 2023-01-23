@@ -1,9 +1,12 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 
 export const ContextApi = createContext();
 
 function ContextProvider({ children }) {
   const [planetas, setPlanetas] = useState([]);
+  const [pesquisaInput, setPesquisaInput] = useState('');
+  // const [filterPesq, setFilterPesq] = useState();
 
   useEffect(() => {
     const fetchPlanetas = async () => {
@@ -14,11 +17,36 @@ function ContextProvider({ children }) {
     };
     fetchPlanetas();
   }, []);
+
+  // useEffect(() => {
+  //   const filterPlanetas = planetas.filter((planet) => planet.name.includes(pesquisaInput));
+  //   setFilterPesq(filterPlanetas);
+  // }, [pesquisaInput, planetas]);
+
+  // if (pesquisaInput) {
+  //   setFilterPesq(planetas.filter((planet) => planet.name.toLowerCase()
+  //     .includes(pesquisaInput.toLowerCase())));
+  // }
+
+  const values = useMemo(() => ({
+    setPlanetas,
+    planetas,
+    pesquisaInput,
+    setPesquisaInput,
+
+  }), [setPlanetas, setPesquisaInput, planetas, pesquisaInput]);
+
   return (
-    <ContextApi.Provider value={ { setPlanetas, planetas } }>
+    <ContextApi.Provider
+      value={ values }
+    >
       {children}
     </ContextApi.Provider>
   );
 }
+
+ContextProvider.propTypes = {
+  children: PropTypes.shape(),
+}.isReqired;
 
 export default ContextProvider;
