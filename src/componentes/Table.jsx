@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { ContextApi } from '../context/contexApi';
 
 function Tabela() {
-  const [planetas, setPlanetas] = useState([]);
+  const { planetas } = useContext(ContextApi);
 
-  useEffect(() => {
-    const fetchPlanetas = async () => {
-      const response = await fetch('https://swapi.dev/api/planets');
-      const data = await response.json();
-      const { results } = data;
-      setPlanetas(results.filter((planeta) => delete planeta.residents));
-    };
-    fetchPlanetas();
-  }, []);
   const tabelaPlanetas = () => planetas.map((planet) => (
     <tr key={ planet.name }>
       <td>{planet.name}</td>
@@ -32,19 +24,23 @@ function Tabela() {
 
   return (
     <table>
-      <th>Name</th>
-      <th>Rotation Period</th>
-      <th>Orbital Period</th>
-      <th>Diameter</th>
-      <th>Climate</th>
-      <th>Gravity</th>
-      <th>Terrain</th>
-      <th>Surface Water</th>
-      <th>Population</th>
-      <th>Films</th>
-      <th>Created</th>
-      <th>Edited</th>
-      <th>URL</th>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rotation Period</th>
+          <th>Orbital Period</th>
+          <th>Diameter</th>
+          <th>Climate</th>
+          <th>Gravity</th>
+          <th>Terrain</th>
+          <th>Surface Water</th>
+          <th>Population</th>
+          <th>Films</th>
+          <th>Created</th>
+          <th>Edited</th>
+          <th>URL</th>
+        </tr>
+      </thead>
       <tbody>{ tabelaPlanetas() }</tbody>
     </table>
   );
