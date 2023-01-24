@@ -2,7 +2,32 @@ import React, { useContext } from 'react';
 import { ContextApi } from '../context/contexApi';
 
 export default function Header() {
-  const { pesquisaInput, setPesquisaInput } = useContext(ContextApi);
+  const { pesquisaInput, setPesquisaInput, planetas,
+    setSelectColuna, setSelectOperador, setInputValor,
+    selectColuna, selectOperador, inpuValor, setFilterPesq } = useContext(ContextApi);
+
+  const a = () => {
+    if (selectOperador === 'menor que') {
+      const filterPlanetas = planetas.filter(
+        (coluna) => Number(coluna[selectColuna])
+      < Number([inpuValor]),
+      );
+      setFilterPesq(filterPlanetas);
+    } if (selectOperador === 'maior que') {
+      const filterPlanetas = planetas.filter(
+        (coluna) => Number(coluna[selectColuna])
+      > Number(inpuValor),
+      );
+      setFilterPesq(filterPlanetas);
+    } if (selectOperador === 'igual a') {
+      const filterPlanetas = planetas.filter(
+        (coluna) => Number(coluna[selectColuna])
+        === Number([inpuValor]),
+      );
+      setFilterPesq(filterPlanetas);
+    }
+  };
+
   return (
     <div>
       <h1> Projeto Star Wars - Trybe</h1>
@@ -17,24 +42,45 @@ export default function Header() {
 
         <label htmlFor="coluna">
           Coluna
-          <select name="coluna">
-            <option>População</option>
-            <option>Período Orbital</option>
-            <option>Diâmetro</option>
-            <option>Período Rotação</option>
-            <option>Água da Surpefície</option>
+          <select
+            name="coluna"
+            data-testid="column-filter"
+            onChange={ (e) => setSelectColuna(e.target.value) }
+          >
+            <option>population</option>
+            <option>orbital_period</option>
+            <option>diameter</option>
+            <option>rotation_period</option>
+            <option>surface_water</option>
           </select>
         </label>
         <label htmlFor="operador">
           operador
-          <select name="operador">
-            <option>menor que</option>
+          <select
+            name="operador"
+            data-testid="comparison-filter"
+            onChange={ (e) => setSelectOperador(e.target.value) }
+          >
             <option>maior que</option>
+            <option>menor que</option>
             <option>igual a</option>
           </select>
         </label>
-        <input type="number" />
-        <button type="button">Filtrar</button>
+        <input
+          type="number"
+          placeholder="0"
+          data-testid="value-filter"
+          value={ inpuValor }
+          onChange={ (e) => setInputValor(e.target.value) }
+        />
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ a }
+        >
+          Filtrar
+
+        </button>
         <label htmlFor="coluna">
           Ordenar
           <select name="coluna">

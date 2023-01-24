@@ -6,7 +6,10 @@ export const ContextApi = createContext();
 function ContextProvider({ children }) {
   const [planetas, setPlanetas] = useState([]);
   const [pesquisaInput, setPesquisaInput] = useState('');
-  // const [filterPesq, setFilterPesq] = useState();
+  const [filterPesq, setFilterPesq] = useState([]);
+  const [selectColuna, setSelectColuna] = useState('population');
+  const [selectOperador, setSelectOperador] = useState('maior que');
+  const [inpuValor, setInputValor] = useState('0');
 
   useEffect(() => {
     const fetchPlanetas = async () => {
@@ -18,23 +21,22 @@ function ContextProvider({ children }) {
     fetchPlanetas();
   }, []);
 
-  // useEffect(() => {
-  //   const filterPlanetas = planetas.filter((planet) => planet.name.includes(pesquisaInput));
-  //   setFilterPesq(filterPlanetas);
-  // }, [pesquisaInput, planetas]);
-
-  // if (pesquisaInput) {
-  //   setFilterPesq(planetas.filter((planet) => planet.name.toLowerCase()
-  //     .includes(pesquisaInput.toLowerCase())));
-  // }
-
   const values = useMemo(() => ({
-    setPlanetas,
     planetas,
     pesquisaInput,
     setPesquisaInput,
+    filterPesq,
+    setFilterPesq,
+    selectColuna,
+    setSelectColuna,
+    selectOperador,
+    setSelectOperador,
+    inpuValor,
+    setInputValor,
 
-  }), [setPlanetas, setPesquisaInput, planetas, pesquisaInput]);
+  }), [setPesquisaInput, planetas, pesquisaInput,
+    filterPesq, selectColuna, setSelectColuna, selectOperador, setSelectOperador,
+    inpuValor, setInputValor, setFilterPesq]);
 
   return (
     <ContextApi.Provider
