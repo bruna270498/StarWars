@@ -7,41 +7,6 @@ export default function Header() {
     selectColuna, selectOperador, inpuValor, setFilterPesq,
     filterPesq } = useContext(ContextApi);
 
-  // const BotaoFilter = () => {
-  //   const selectOpitions = {
-  //     colum: selectColuna,
-  //     valor: inpuValor,
-  //     operador: selectOperador,
-  //   };
-
-  //   if (selectOperador === 'menor que') {
-  //     const filterPlanetas = planetas.filter(
-  //       (coluna) => Number(coluna[selectColuna])
-  //       < Number(inpuValor),
-  //     );
-  //     // setFilterPesq(filterPlanetas);
-  //     setMultiplosFilters([...filterPlanetas]);
-  //   } if (selectOperador === 'maior que') {
-  //     const filterPlanetas = planetas.filter(
-  //       (coluna) => Number(coluna[selectColuna]) > Number(inpuValor),
-  //     );
-  //     // setFilterPesq(filterPlanetas);
-  //     setMultiplosFilters([...filterPlanetas]);
-  //   } if (selectOperador === 'igual a') {
-  //     const filterPlanetas = planetas.filter(
-  //       (coluna) => Number(coluna[selectColuna])
-  //         === Number(inpuValor),
-  //     );
-  //     // setFilterPesq(filterPlanetas);
-  //     setMultiplosFilters([...filterPlanetas]);
-  //   }
-  //   setListFilter([...listFilter, selectOpitions]);
-  // };
-  // console.log(multiplosFilters, filterPesq);
-
-  // listFilter.forEach(({ valor, colum, operador }) => {
-  // });
-
   return (
     <div>
       <h1> Projeto Star Wars - Trybe</h1>
