@@ -3,14 +3,32 @@ import { ContextApi } from '../context/contexApi';
 import Header from './cabeçalho';
 
 function Tabela() {
-  const { pesquisaInput, planetas, setFilterPesq, filterPesq } = useContext(ContextApi);
+  const { pesquisaInput, planetas,
+    filterPesq } = useContext(ContextApi);
 
+  let planetaApi = planetas;
+
+  if (filterPesq.length) {
+    planetaApi = filterPesq.reduce((acc, curr) => {
+      const { selectOperador: operador, selectColuna: colum, inpuValor: valor } = curr;
+      if (operador === 'maior que') {
+        return acc.filter((obj) => +obj[colum] > valor);
+      } if (operador === 'menor que') {
+        return acc.filter((obj) => +obj[colum] < valor);
+      }
+      return acc.filter((obj) => +obj[colum] === +valor);
+    }, planetaApi);
+  }
+  const d = pesquisaInput.toLowerCase();
+  const pesquisa = planetaApi.filter((a) => {
+    const l = a.name.toLowerCase();
+    return l.includes(d);
+  });
   useEffect(() => {
-    const planetaFilter = planetas.filter((e) => e.name.includes(pesquisaInput));
-    setFilterPesq(planetaFilter);
-  }, [planetas, pesquisaInput, setFilterPesq]);
 
-  const tabelaPlanetas = () => filterPesq.map((planet) => (
+  }, [filterPesq]);
+
+  const tabelaPlanetas = () => pesquisa.map((planet) => (
     <tr key={ planet.name }>
       <td>{planet.name}</td>
       <td>{planet.rotation_period}</td>

@@ -2,31 +2,45 @@ import React, { useContext } from 'react';
 import { ContextApi } from '../context/contexApi';
 
 export default function Header() {
-  const { pesquisaInput, setPesquisaInput, planetas,
+  const { pesquisaInput, setPesquisaInput,
     setSelectColuna, setSelectOperador, setInputValor,
-    selectColuna, selectOperador, inpuValor, setFilterPesq } = useContext(ContextApi);
+    selectColuna, selectOperador, inpuValor, setFilterPesq,
+    filterPesq } = useContext(ContextApi);
 
-  const a = () => {
-    if (selectOperador === 'menor que') {
-      const filterPlanetas = planetas.filter(
-        (coluna) => Number(coluna[selectColuna])
-      < Number([inpuValor]),
-      );
-      setFilterPesq(filterPlanetas);
-    } if (selectOperador === 'maior que') {
-      const filterPlanetas = planetas.filter(
-        (coluna) => Number(coluna[selectColuna])
-      > Number(inpuValor),
-      );
-      setFilterPesq(filterPlanetas);
-    } if (selectOperador === 'igual a') {
-      const filterPlanetas = planetas.filter(
-        (coluna) => Number(coluna[selectColuna])
-        === Number([inpuValor]),
-      );
-      setFilterPesq(filterPlanetas);
-    }
-  };
+  // const BotaoFilter = () => {
+  //   const selectOpitions = {
+  //     colum: selectColuna,
+  //     valor: inpuValor,
+  //     operador: selectOperador,
+  //   };
+
+  //   if (selectOperador === 'menor que') {
+  //     const filterPlanetas = planetas.filter(
+  //       (coluna) => Number(coluna[selectColuna])
+  //       < Number(inpuValor),
+  //     );
+  //     // setFilterPesq(filterPlanetas);
+  //     setMultiplosFilters([...filterPlanetas]);
+  //   } if (selectOperador === 'maior que') {
+  //     const filterPlanetas = planetas.filter(
+  //       (coluna) => Number(coluna[selectColuna]) > Number(inpuValor),
+  //     );
+  //     // setFilterPesq(filterPlanetas);
+  //     setMultiplosFilters([...filterPlanetas]);
+  //   } if (selectOperador === 'igual a') {
+  //     const filterPlanetas = planetas.filter(
+  //       (coluna) => Number(coluna[selectColuna])
+  //         === Number(inpuValor),
+  //     );
+  //     // setFilterPesq(filterPlanetas);
+  //     setMultiplosFilters([...filterPlanetas]);
+  //   }
+  //   setListFilter([...listFilter, selectOpitions]);
+  // };
+  // console.log(multiplosFilters, filterPesq);
+
+  // listFilter.forEach(({ valor, colum, operador }) => {
+  // });
 
   return (
     <div>
@@ -39,7 +53,6 @@ export default function Header() {
 
       />
       <form>
-
         <label htmlFor="coluna">
           Coluna
           <select
@@ -76,7 +89,9 @@ export default function Header() {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ a }
+          onClick={ () => setFilterPesq(
+            [...filterPesq, { selectColuna, inpuValor, selectOperador }],
+          ) }
         >
           Filtrar
 
@@ -101,6 +116,15 @@ export default function Header() {
         </label>
         <button type="button">Ordenar</button>
       </form>
+      { filterPesq.map((e, i) => (
+        <ul key={ i }>
+          <li>
+            {
+              `${e.selectColuna} ${e.selectOperador} ${e.inpuValor}`
+            }
+          </li>
+        </ul>
+      ))}
     </div>
   );
 }
