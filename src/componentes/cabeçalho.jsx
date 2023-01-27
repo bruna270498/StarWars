@@ -1,11 +1,26 @@
-import React, { useContext } from 'react';
+import { func } from 'prop-types';
+import React, { useContext, useEffect } from 'react';
 import { ContextApi } from '../context/contexApi';
 
 export default function Header() {
   const { pesquisaInput, setPesquisaInput,
     setSelectColuna, setSelectOperador, setInputValor,
     selectColuna, selectOperador, inpuValor, setFilterPesq,
-    filterPesq } = useContext(ContextApi);
+    filterPesq, optionsColum, setOptionsColum } = useContext(ContextApi);
+
+  const options = ['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water'];
+
+  useEffect(() => {
+    setOptionsColum(options);
+  }, []);
+
+  // const a = optionsColum.filter((r) => r !== selectColuna);
+  // const a = optionsColum.slice(1, 1);
+  const deleteOption = optionsColum.filter((r) => r !== selectColuna);
+  function s(e) {
+    console.log(filterPesq[e.target.value]);
+  }
 
   return (
     <div>
@@ -25,11 +40,13 @@ export default function Header() {
             data-testid="column-filter"
             onChange={ (e) => setSelectColuna(e.target.value) }
           >
-            <option>population</option>
-            <option>orbital_period</option>
-            <option>diameter</option>
-            <option>rotation_period</option>
-            <option>surface_water</option>
+
+            {optionsColum.map((e) => (
+              <option
+                key={ e }
+              >
+                {e}
+              </option>))}
           </select>
         </label>
         <label htmlFor="operador">
@@ -54,21 +71,23 @@ export default function Header() {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ () => setFilterPesq(
+          onClick={ () => [setFilterPesq(
             [...filterPesq, { selectColuna, inpuValor, selectOperador }],
-          ) }
+          ), setOptionsColum(deleteOption), setSelectColuna(deleteOption[0])] }
         >
           Filtrar
 
         </button>
+
         <label htmlFor="coluna">
           Ordenar
-          <select name="coluna">
-            <option>População</option>
-            <option>Período Orbital</option>
-            <option>Diâmetro</option>
-            <option>Período Rotação</option>
-            <option>Água da Surpefície</option>
+          <select data-testid="column-sort" name="coluna">
+            {optionsColum.map((e) => (
+              <option
+                key={ e }
+              >
+                {e}
+              </option>))}
           </select>
         </label>
         <label htmlFor="desAcres">
@@ -79,14 +98,23 @@ export default function Header() {
           descendente
           <input type="radio" name="desAcres" value="descendente" />
         </label>
-        <button type="button">Ordenar</button>
+        <button data-testid="column-sort-button" type="button">Ordenar</button>
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          // onClick={ () => delet }
+        >
+          Remover Filtros
+
+        </button>
       </form>
       { filterPesq.map((e, i) => (
         <ul key={ i }>
-          <li>
+          <li data-testid="filter">
             {
               `${e.selectColuna} ${e.selectOperador} ${e.inpuValor}`
             }
+            <button value={ i } onClick={ s }>X</button>
           </li>
         </ul>
       ))}

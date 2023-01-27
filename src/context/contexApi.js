@@ -10,6 +10,7 @@ function ContextProvider({ children }) {
   const [selectColuna, setSelectColuna] = useState('population');
   const [selectOperador, setSelectOperador] = useState('maior que');
   const [inpuValor, setInputValor] = useState('0');
+  const [optionsColum, setOptionsColum] = useState([]);
 
   useEffect(() => {
     const fetchPlanetas = async () => {
@@ -33,10 +34,12 @@ function ContextProvider({ children }) {
     setSelectOperador,
     inpuValor,
     setInputValor,
+    optionsColum,
+    setOptionsColum,
 
   }), [setPesquisaInput, planetas, pesquisaInput,
     filterPesq, selectColuna, setSelectColuna, selectOperador, setSelectOperador,
-    inpuValor, setInputValor, setFilterPesq]);
+    inpuValor, setInputValor, setFilterPesq, optionsColum, setOptionsColum]);
 
   return (
     <ContextApi.Provider
