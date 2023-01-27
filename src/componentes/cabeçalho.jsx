@@ -1,4 +1,3 @@
-import { func } from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { ContextApi } from '../context/contexApi';
 
@@ -15,11 +14,16 @@ export default function Header() {
     setOptionsColum(options);
   }, []);
 
-  // const a = optionsColum.filter((r) => r !== selectColuna);
-  // const a = optionsColum.slice(1, 1);
   const deleteOption = optionsColum.filter((r) => r !== selectColuna);
+
   function s(e) {
-    console.log(filterPesq[e.target.value]);
+    filterPesq.forEach((i) => {
+      // console.log(i.selectColuna)
+      if (i.selectColuna === filterPesq[e.target.value].selectColuna) {
+        // filterPesq
+      }
+    });
+    // console.log(filterPesq[e.target.value].selectColuna);
   }
 
   return (
