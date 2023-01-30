@@ -16,14 +16,16 @@ export default function Header() {
 
   const deleteOption = optionsColum.filter((r) => r !== selectColuna);
 
-  function s(e) {
-    filterPesq.forEach((i) => {
-      // console.log(i.selectColuna)
-      if (i.selectColuna === filterPesq[e.target.value].selectColuna) {
-        // filterPesq
-      }
-    });
-    // console.log(filterPesq[e.target.value].selectColuna);
+  function removeFilter(event, option) {
+    const optionSelecionado = filterPesq[event.target.value];
+    const filtroRemovido = filterPesq.filter((o) => o !== optionSelecionado);
+    setOptionsColum([...optionsColum, option]);
+    setFilterPesq(filtroRemovido);
+  }
+
+  function removerTodosFiltros() {
+    const arrayFiltros = [];
+    setFilterPesq(arrayFiltros);
   }
 
   return (
@@ -106,7 +108,7 @@ export default function Header() {
         <button
           type="button"
           data-testid="button-remove-filters"
-          // onClick={ () => delet }
+          onClick={ removerTodosFiltros }
         >
           Remover Filtros
 
@@ -118,7 +120,13 @@ export default function Header() {
             {
               `${e.selectColuna} ${e.selectOperador} ${e.inpuValor}`
             }
-            <button value={ i } onClick={ s }>X</button>
+            <button
+              value={ i }
+              onClick={ (event) => removeFilter(event, e.selectColuna) }
+            >
+              X
+
+            </button>
           </li>
         </ul>
       ))}
