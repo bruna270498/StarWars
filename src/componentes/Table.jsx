@@ -30,41 +30,39 @@ function Tabela() {
 
   const tabelaPlanetas = () => pesquisa.map((planet) => (
     <tr key={ planet.name }>
-      <td>{planet.name}</td>
-      <td>{planet.rotation_period}</td>
-      <td>{planet.orbital_period}</td>
-      <td>{planet.diameter}</td>
-      <td>{planet.climate}</td>
-      <td>{planet.gravity}</td>
-      <td>{planet.terrain}</td>
-      <td>{planet.surface_water}</td>
-      <td>{planet.population}</td>
-      <td>{planet.films}</td>
-      <td>{planet.created}</td>
-      <td>{planet.edited}</td>
-      <td>{planet.ur}</td>
+      <td className="colna">{planet.name}</td>
+      <td className="colna">{planet.rotation_period}</td>
+      <td className="colna">{planet.orbital_period}</td>
+      <td className="colna">{planet.diameter}</td>
+      <td className="colna">{planet.climate}</td>
+      <td className="colna">{planet.gravity}</td>
+      <td className="colna">{planet.terrain}</td>
+      <td className="colna">{planet.surface_water}</td>
+      <td className="colna">{planet.population}</td>
+      <td className="colna">{planet.created}</td>
+      <td className="colna">{planet.edited}</td>
+      <td className="colna">{planet.ur}</td>
     </tr>
   ));
 
   return (
     <div>
       <Header />
-      <table>
+      <table className="tabela">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Rotation Period</th>
-            <th>Orbital Period</th>
-            <th>Diameter</th>
-            <th>Climate</th>
-            <th>Gravity</th>
-            <th>Terrain</th>
-            <th>Surface Water</th>
-            <th>Population</th>
-            <th>Films</th>
-            <th>Created</th>
-            <th>Edited</th>
-            <th>URL</th>
+            <th className="cabeçalho">Name</th>
+            <th className="cabeçalho">Rotation Period</th>
+            <th className="cabeçalho">Orbital Period</th>
+            <th className="cabeçalho">Diameter</th>
+            <th className="cabeçalho">Climate</th>
+            <th className="cabeçalho">Gravity</th>
+            <th className="cabeçalho">Terrain</th>
+            <th className="cabeçalho">Surface Water</th>
+            <th className="cabeçalho">Population</th>
+            <th className="cabeçalho">Created</th>
+            <th className="cabeçalho">Edited</th>
+            <th className="cabeçalho">URL</th>
           </tr>
         </thead>
         <tbody>{ tabelaPlanetas() }</tbody>

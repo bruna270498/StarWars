@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { ContextApi } from '../context/contexApi';
 
 export default function Header() {
@@ -19,6 +20,7 @@ export default function Header() {
   function removeFilter(event, option) {
     const optionSelecionado = filterPesq[event.target.value];
     const filtroRemovido = filterPesq.filter((o) => o !== optionSelecionado);
+
     setOptionsColum([...optionsColum, option]);
     setFilterPesq(filtroRemovido);
   }
@@ -30,18 +32,29 @@ export default function Header() {
 
   return (
     <div>
-      <h1> Projeto Star Wars - Trybe</h1>
+      <div className="divTitulo1">
+        <div className="divTitulo2">
+          {' '}
+          <h1 className="titulo">
+            Star
+          </h1>
+          <h1 className="titulo2">Wars</h1>
+        </div>
+
+      </div>
       <input
+        className="inputPesquisa"
         data-testid="name-filter"
         value={ pesquisaInput }
         type="text"
         onChange={ (e) => setPesquisaInput(e.target.value) }
 
       />
-      <form>
-        <label htmlFor="coluna">
-          Coluna
+      <form className="formPesq">
+        <label className="filtros coluna" htmlFor="coluna">
+          Coluna :
           <select
+            className="optionsSelect"
             name="coluna"
             data-testid="column-filter"
             onChange={ (e) => setSelectColuna(e.target.value) }
@@ -49,34 +62,38 @@ export default function Header() {
 
             {optionsColum.map((e) => (
               <option
+                className="options"
                 key={ e }
               >
                 {e}
               </option>))}
           </select>
         </label>
-        <label htmlFor="operador">
-          operador
+        <label className="filtros coluna" htmlFor="operador">
+          Operador :
           <select
             name="operador"
             data-testid="comparison-filter"
+            className="optionsSelect"
             onChange={ (e) => setSelectOperador(e.target.value) }
           >
-            <option>maior que</option>
-            <option>menor que</option>
-            <option>igual a</option>
+            <option className="options">maior que</option>
+            <option className="options">menor que</option>
+            <option className="options">igual a</option>
           </select>
         </label>
         <input
           type="number"
           placeholder="0"
           data-testid="value-filter"
+          className="filtros"
           value={ inpuValor }
           onChange={ (e) => setInputValor(e.target.value) }
         />
         <button
           type="button"
           data-testid="button-filter"
+          className="btnFiltros"
           onClick={ () => [setFilterPesq(
             [...filterPesq, { selectColuna, inpuValor, selectOperador }],
           ), setOptionsColum(deleteOption), setSelectColuna(deleteOption[0])] }
@@ -84,29 +101,9 @@ export default function Header() {
           Filtrar
 
         </button>
-
-        <label htmlFor="coluna">
-          Ordenar
-          <select data-testid="column-sort" name="coluna">
-            {optionsColum.map((e) => (
-              <option
-                key={ e }
-              >
-                {e}
-              </option>))}
-          </select>
-        </label>
-        <label htmlFor="desAcres">
-          ascendente
-          <input type="radio" name="desAcres" value="ascendente" />
-        </label>
-        <label htmlFor="desAcres">
-          descendente
-          <input type="radio" name="desAcres" value="descendente" />
-        </label>
-        <button data-testid="column-sort-button" type="button">Ordenar</button>
         <button
           type="button"
+          className="btnFiltros"
           data-testid="button-remove-filters"
           onClick={ removerTodosFiltros }
         >
@@ -116,16 +113,16 @@ export default function Header() {
       </form>
       { filterPesq.map((e, i) => (
         <ul key={ i }>
-          <li data-testid="filter">
+          <li className="listFilter" data-testid="filter">
             {
               `${e.selectColuna} ${e.selectOperador} ${e.inpuValor}`
             }
             <button
               value={ i }
+              className="iconRemove"
               onClick={ (event) => removeFilter(event, e.selectColuna) }
             >
-              X
-
+              <AiOutlineDelete />
             </button>
           </li>
         </ul>

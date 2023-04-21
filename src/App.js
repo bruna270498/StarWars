@@ -4,7 +4,7 @@ import Table from './componentes/Table';
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Table />
     </div>
   );

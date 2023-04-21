@@ -1,41 +1,113 @@
-.App {
-  text-align: center;
+.app {
+  margin: 0;
+  background-image: url('https://img.olhardigital.com.br/wp-content/uploads/2019/10/20191022062955.jpg');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.titulo {
+  font-size: 100px;
+  font-family: 'Tourney', cursive;
+  color: orange;
+  padding-top: 50px;
+  margin-top: 100px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.titulo2 {
+  font-size: 100px;
+  color: orange;
+  font-family: 'Tourney', cursive;
+  margin-top: 0;
+  text-align:right;
 }
 
-.App-header {
-  align-items: center;
-  background-color: #282c34;
+.divTitulo1 {
+  border-radius: 70%;
+  width: 400px;
+  height: 400px;
+  margin-left: 600px;
+  margin-top: -150px;
+  border-bottom: 0;
+  box-shadow: 2px 2px 2px 1px rgba(255, 255, 255, 0.6);
+}
+
+.inputPesquisa {
+  width: 700px;
+  height: 25px;
+  border-radius: 15px;
+  margin-top: 200px;
+  margin-left: 350px;
+  opacity: 0.7;
+
+}
+
+.options {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 20px;
+  background-color: #110573;
+  color: aliceblue;
+
+}
+
+.optionsSelect {
+  font-size: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tabela {
+  background-color: rgb(18, 10, 143);
+  margin-top: 70px;
+  margin-left: 15px;
+  border-radius: 1%;
+  margin-bottom: 10px;
+  border: 5px solid white;
+}
+
+.colna, .cabeçalho {
+  color: whitesmoke;
+  border-bottom: 1px solid whitesmoke;
+  font-family: 'Segoe UI', sans-serif;
+  flex-wrap: wrap;
+  width: 100px;
+}
+
+.formPesq {
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.filtros {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+}
+
+.btnFiltros {
+  height: 30px;
+  font-size: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-left: 40px;
+  opacity: 0.5;
+  border-radius: 5px;
+}
+
+.coluna {
   color: white;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
+}
+
+.listFilter {
+  color: white;
+  font-size: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  list-style: none;
+}
+
+.iconRemove {
+  color: red;
+  font-size: 20px;
+  background-color: rgb(18, 10, 143, 0.1);
+  border: 0;
+  text-align: center;
   justify-content: center;
-  min-height: 100vh;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }
