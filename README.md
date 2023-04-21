@@ -1,13 +1,46 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+ <img width= 700px src='src/imagem/Captura de tela de 2023-04-21 15-07-38.png' />
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+## Sobre o Projeto
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Foi desenvolvido uma lista com filtros de planetas do universo de Star Wars usando Context API e Hooks para controlar os estados globais.
+
+### Habilidades desenvolvidas:
+
+- Utilizar a Context API do React para gerenciar estado.
+- Utilizar o React Hook useState;
+- Utilizar o React Hook useContext;
+- Utilizar o React Hook useEffect;
+- Criar React Hooks customizados.
+- Escrever testes para garantir que sua aplicação possua uma boa cobertura de testes.
+
+### Linguagens utilizadas:
+
+- React;
+- Context API;
+- React Testing Library;
+- CSS;
+
+### Layout
+
+<img src='src/imagem/simplescreenrecorder-2023-04-21_15.05.02 (online-video-cutter.com).gif' />
+
+
+## Como executar:
+ 
+ ```bash
+ # clone o repositorio
+ 
+- git clone git@github.com:bruna270498/Project-Tryunfo.git
+
+# Instale as dependências
+
+- npm install.
+
+# Rode o comando
+
+- npm start
+
+```
+
+
+
