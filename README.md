@@ -30,7 +30,7 @@ Foi desenvolvido uma lista com filtros de planetas do universo de Star Wars usan
  ```bash
  # clone o repositorio
  
-- git clone git@github.com:bruna270498/Project-Tryunfo.git
+- git clone git@github.com:bruna270498/StarWars.git
 
 # Instale as dependências
 
